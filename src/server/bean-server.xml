@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    
+   
+    <bean id="stringHello" class="server.StringHello">
+    </bean>
+    
+    <bean id="fileHello" class="server.FileHello">
+    </bean>
+    
+    <bean class="server.ExporterRmi">
+	    <property name="serviceName" value="StringHello"/>
+	    <property name="service" ref="stringHello"/>
+	    <property name="serviceInterface" value="server.IString"/>
+	    <property name="registryPort" value="1199"/> 
+	</bean>
+	
+	<bean class="server.ExporterRmi">
+	    <property name="serviceName" value="FileHello"/>
+	    <property name="service" ref="fileHello"/>
+	    <property name="serviceInterface" value="server.IFile"/>
+	    <property name="registryPort" value="1200"/> 
+	</bean>
+
+
+
+
+</beans>

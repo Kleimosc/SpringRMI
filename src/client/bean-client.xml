@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    
+    <bean id="clientGetString" class="client.GetString">
+        <property name="iString" ref="getString"/>
+    </bean>
+    
+    <bean id="clientGetFile" class="client.GetFile">
+        <property name="iFile" ref="getFile"/>
+    </bean>
+    
+    <bean id="getString" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+        <property name="serviceUrl" value="rmi://192.168.66.26:1199/StringHello"/>
+        <property name="serviceInterface" value="client.IString"/>
+    </bean>
+    
+    <bean id="getFile" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+        <property name="serviceUrl" value="rmi://192.168.66.26:1200/FileHello"/>
+        <property name="serviceInterface" value="client.IFile"/>
+    </bean>
+</beans>
